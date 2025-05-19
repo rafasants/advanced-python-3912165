@@ -1,14 +1,19 @@
-# Example file for Advanced Python by Joe Marini
-# Demonstrate the use of documentation strings
+def say_hello(name: str = None) -> str:
+  """Prints a greeting message.
 
+    Args:
+        name (str, optional): The name to greet. If None, a generic greeting is used.
 
-def myFunction(arg1, arg2=None):
-    print(arg1, arg2)
-
+    Returns:
+        None
+  """
+  return f'Hello {name}' if name else f'Hello World!'
 
 def main():
-    print(myFunction.__doc__)
+  greetings = say_hello(name="Rafael")
+  print(greetings)
+  print("say_hello doc:")
+  print(say_hello.__doc__)
 
 
-if __name__ == "__main__":
-    main()
+main()

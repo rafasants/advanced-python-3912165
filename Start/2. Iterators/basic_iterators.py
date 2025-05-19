@@ -11,6 +11,23 @@ for d in days:
 
 # use iter() to create an iterator over a collection
 # the next() function retrieves the next value from an iterator
+week_days = iter(zip(days,daysFr))
+try:
+    print(next(week_days))
+    print(next(week_days))
+    print(next(week_days))
+    print(next(week_days))
+    print(next(week_days))
+    print(next(week_days))
+    print(next(week_days))
+    print(next(week_days))
+    print(next(week_days))
+except StopIteration:
+    pass
 
 
 # iterate using a function and a sentinel
+file_path = r"/workspaces/advanced-python-3912165/Start/2. Iterators/testfile.txt"
+with open(file_path, 'r', newline='') as fp:
+    for line in iter(fp.readline,''):
+        print(line,sep='')

@@ -17,3 +17,13 @@ print(findname("Creed"))
 print(findname("Tom"))
 
 # Check if a number is prime
+def is_prime(number: int) -> bool:
+
+    for i in range (2, number):
+        if number % i == 0:
+            print(f"{number} is NOT a prime number. ({number} % {i} = {int(number/i)})")
+            return False
+    print(f"{number} is a prime number")
+    return True
+
+is_prime(33)

@@ -11,14 +11,15 @@ values=["one", "two", "three", "four", "five"]
 print(*values)
 
 # use the 'sep' argument to control the separator between values:
-
+print(*values, sep=' -> ')
 
 # use the 'end' argument to control the line ending characters
 # let's auto-print the current line number along with each item
-
+print(*list(f'[Line {x[0+1]}] {x[1]}' for x in enumerate(values)),sep=" [end of line]\n")
 
 # you can even redirect print() output to a file:
-
+new_file = open(r"/workspaces/advanced-python-3912165/Start/1. PythonFeatures/print_output.txt","w")
+print(*list(f'[Line {x[0+1]}] {x[1]}' for x in enumerate(values)),sep=" [end of line]\n", file=new_file, flush=True)
 
 # pprint() can be used to print more complex data 
 # in a format that is more readable
@@ -29,6 +30,7 @@ worldcupdata = [
     { "game": "Semifinal", "Attendance" : 88966, "Argentina" : 3, "Croatia" : 0}
 ]
 
+pprint.pp(worldcupdata, indent=6, width=60, underscore_numbers=True)
 
 # pprint also works on newer complex structures, like dataclasses!
 @dataclass
@@ -45,3 +47,5 @@ worldcupdata2 = [
     wcdata("Semifinal", 68294, "France" , "Morocco" , "2 -- 0" ),
     wcdata("Semifinal", 88966, "Argentina" , "Croatia" , "3 -- 0" ),
 ]
+
+pprint.pp(worldcupdata2)

@@ -3,6 +3,11 @@
 
 # Define a custom exception class
 
+class InsufficientFundsError(Exception):
+    """Raised when the account balance is insufficient for a transaction"""
+    def __init__(self, balance: float, amount: float):
+        self.message = f'Insufficient balance: ${balance:.2f} (required: ${amount:.2f})'
+        super().__init__(self.message)
 
 class BankAccount:
     def __init__(self, balance=0):
@@ -12,6 +17,9 @@ class BankAccount:
         self.balance += amount
 
     def withdraw(self, amount):
+        if amount > self.balance:
+            raise InsufficientFundsError(self.balance, amount)
+        
         self.balance -= amount
 
     def get_balance(self):
@@ -26,5 +34,7 @@ try:
     account.withdraw(50)
     # Attempt to withdraw $100, which exceeds the balance
     account.withdraw(100)
+except InsufficientFundsError as e:
+    print(f"Error - {str(e)}")
 finally:
     print(f"Current balance: ${account.get_balance():.2f}")
